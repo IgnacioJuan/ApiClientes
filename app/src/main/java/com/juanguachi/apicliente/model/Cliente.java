@@ -7,6 +7,16 @@ public class Cliente {
     private String createAt;
     private String email;
 
+    public Cliente() {
+    }
+
+    public Cliente(String id, String nombre, String apellido, String email) {
+        this.id = id;
+        this.nombre = nombre;
+        this.apellido = apellido;
+        this.email = email;
+    }
+
     public String getId() {
         return id;
     }

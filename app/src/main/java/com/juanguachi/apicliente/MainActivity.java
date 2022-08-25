@@ -18,6 +18,7 @@ import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.juanguachi.apicliente.model.Cliente;
+import com.juanguachi.apicliente.model.ClienteListAdapter;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -44,20 +45,18 @@ public class MainActivity extends AppCompatActivity {
         nombretxt = findViewById(R.id.txt_nombre);
         apellidotxt = findViewById(R.id.txt_apellido);
         emailtxt = findViewById(R.id.txt_email);
-
-        //Instanciar al request
-
-
+        listView = findViewById(R.id.listclientes);
         //Llamado al metodo de obtener los datos
         getdatos();
     }
 
     private void getdatos() {
-        listView = findViewById(R.id.listclientes);
+
         datos = new ArrayList<>();
         arrayAdapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, datos);
-        listView.setAdapter(arrayAdapter);
 
+        ClienteListAdapter adapter=new ClienteListAdapter(this,R.layout.listclientesmod,datos);
+        listView.setAdapter(adapter);
         String url = "http://172.24.14.221:8080/api/clientes";
         JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(url, new Response.Listener<JSONArray>() {
 
